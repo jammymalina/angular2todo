@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, HostListener, QueryList } from '@angular/core';
 import { TodoItem } from '../todo-item';
 import { TodoDetailComponent } from '../todo-detail/todo-detail.component';
 
@@ -10,7 +10,7 @@ import { TodoDetailComponent } from '../todo-detail/todo-detail.component';
 export class TodoListComponent implements OnInit {
 
     @Input() items: Array<TodoItem>;
-    @ViewChildren(TodoDetailComponent) griditems;
+    @ViewChildren(TodoDetailComponent) griditems: QueryList<TodoDetailComponent>;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {

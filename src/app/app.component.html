@@ -1,2 +1,6 @@
-<app-todo-list *ngIf="items && items.length" [items]="items"></app-todo-list>
-<p *ngIf="!items || !items.length">Your todo list is empty. Better add some items first.</p>
+<div class="container">
+    <div class="row"><div class="col-md-8 col-md-push-2 white-panel shadow-4dp">
+        <app-todo-list *ngIf="!todoList.isEmpty()" [items]="todoList.getItems()"></app-todo-list>
+        <p *ngIf="!items || !items.length">Your todo list is empty. Better add some items first.</p>
+    </div></div>
+</div>

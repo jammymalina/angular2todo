@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoItem } from './todo-item';
+import { TodoList } from './todo-item';
 import { ItemService } from './item.service';
 
 import './rxjs-operators';
@@ -10,13 +10,13 @@ import './rxjs-operators';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    items: Array<TodoItem>;
+    todoList: TodoList;
     errorMessage: string;
 
     constructor(private itemService: ItemService) {}
 
     ngOnInit() {
-        this.items = [];
-        this.itemService.getItems().subscribe(items => this.items = items, error =>  this.errorMessage = error as any);
+        this.todoList = new TodoList();
+        this.itemService.getItems().subscribe(items => this.todoList.addItems(items), error =>  this.errorMessage = error as any);
     }
 }
