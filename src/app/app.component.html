@@ -1,3 +1,2 @@
-<h1>
-  {{title}}
-</h1>
+<app-todo-list *ngIf="items && items.length" [items]="items"></app-todo-list>
+<p *ngIf="!items || !items.length">Your todo list is empty. Better add some items first.</p>
