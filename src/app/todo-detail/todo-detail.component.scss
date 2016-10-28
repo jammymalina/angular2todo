@@ -1,3 +1,31 @@
 :host {
     display: block;
+    box-sizing: border-box;
+
+    &.priority-1 {
+        h1 {
+            font-size: 30px;
+        }
+        p {
+            font-size: 20px;
+        }
+    }
+
+    &.priority-2 {
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+        }
+    }
+
+    &.priority-3 {
+        h1 {
+            font-size: 14px;
+        }
+        p {
+            font-size: 10px;
+        }
+    }
 }

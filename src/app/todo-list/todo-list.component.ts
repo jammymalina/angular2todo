@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren, HostListener, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ViewChildren, HostListener, HostBinding, QueryList } from '@angular/core';
 import { TodoItem } from '../todo-item';
 import { TodoDetailComponent } from '../todo-detail/todo-detail.component';
 
@@ -7,10 +7,11 @@ import { TodoDetailComponent } from '../todo-detail/todo-detail.component';
     templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, AfterViewInit {
 
     @Input() items: Array<TodoItem>;
     @ViewChildren(TodoDetailComponent) griditems: QueryList<TodoDetailComponent>;
+    @HostBinding('style.width.px') width: number;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
@@ -19,12 +20,14 @@ export class TodoListComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
+    ngOnInit() {}
+
+    ngAfterViewInit() {
         this.packItems();
     }
 
     packItems() {
-        console.log(this.griditems);
+        
     }
 
 }

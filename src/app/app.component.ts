@@ -18,6 +18,5 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.todoList = new TodoList();
         this.itemService.getItems().subscribe(items => this.todoList.addItems(items), error =>  this.errorMessage = error as any);
-        console.log(this.todoList.isEmpty());
     }
 }

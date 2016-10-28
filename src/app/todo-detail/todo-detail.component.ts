@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { TodoItem } from '../todo-item';
 
 @Component({
@@ -9,6 +9,8 @@ import { TodoItem } from '../todo-item';
 export class TodoDetailComponent implements OnInit {
 
     @Input() item: TodoItem;
+    @HostBinding('style.width.px') width: number;
+    @HostBinding('style.height.px') height: number;
 
     constructor() {}
 

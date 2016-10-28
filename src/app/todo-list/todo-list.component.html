@@ -1,1 +1,1 @@
-<app-todo-detail *ngFor="let item of items" [item]="item" [style.background-color]="item.color"></app-todo-detail>
+<app-todo-detail *ngFor="let item of items" [item]="item" [style.background-color]="item.color" [ngClass]="'priority-' + item.priority"></app-todo-detail>
