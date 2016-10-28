@@ -95,8 +95,9 @@ export class ColorGenerator {
     private options: ColorGeneratorConfig;
     colorDictionary: { [key: string]: ColorInfo } = {};
 
-    constructor(options: ColorGeneratorConfig) {
-        this.options.seed = !options.seed ? 0 : Math.round(options.seed);
+    constructor(options: ColorGeneratorConfig = {}) {
+        this.options = options;
+        this.options.seed = !options.seed ? 0 : options.seed;
         this.loadColorBounds();
     }
 
@@ -123,6 +124,7 @@ export class ColorGenerator {
         H = this.pickHue();
         S = this.pickSaturation(H);
         B = this.pickBrightness(H, S);
+        // console.log(H + ' ' + S + ' ' + B);
 
         return setHSVFormat([H, S, B], this.options.format);
     }
@@ -227,7 +229,7 @@ export class ColorGenerator {
     }
 
     private getColorInfo(hue): ColorInfo {
-        if (hue >= 34 && hue <= 360) {
+        if (hue >= 334 && hue <= 360) {
             hue -= 360;
         }
 
@@ -240,13 +242,16 @@ export class ColorGenerator {
                 return color;
             }
         }
-
-        return this.colorDictionary['default'];
+        return {
+            hueRange: [0, 360],
+            lowerBounds: [[0, 0], [100, 100]],
+            saturationRange: [0, 100],
+            brightnessRange: [0, 100]
+        };
     }
 
     private getMinBrightness(hue: number, saturation: number): number {
         let lowerBounds = this.getColorInfo(hue).lowerBounds;
-
         for (let i = 0; i < lowerBounds.length - 1; i++) {
             let s1 = lowerBounds[i][0],
                 v1 = lowerBounds[i][1];
@@ -279,13 +284,7 @@ export class ColorGenerator {
         };
     }
 
-    loadColorBounds() {
-        this.defineColor(
-            'default',
-            [0, 360],
-            [[0, 0], [100, 100]]
-        );
-
+    private loadColorBounds() {
         this.defineColor(
             'monochrome',
             null,
